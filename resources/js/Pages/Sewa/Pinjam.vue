@@ -204,6 +204,10 @@ function statusBayar(value) {
     }
     return hasil;
 }
+
+function deffTime(){
+
+}
 </script>
 
 
@@ -279,6 +283,7 @@ function statusBayar(value) {
                                 <th class="p-1.5 text-xs whitespace-nowrap border text-center">No. Polisi</th>
                                 <th class="p-1.5 text-xs whitespace-nowrap border text-center">Tanggal Sewa</th>
                                 <th class="p-1.5 text-xs whitespace-nowrap border text-center">Tanggal Kembali</th>
+                                <th class="p-1 text-[0.67rem] whitespace-pre border">Jam Sewa</th>
                                 <th class="p-1 text-[0.67rem] whitespace-pre border">Penanggung Jawab</th>
                                 <th class="p-1 text-[0.67rem] whitespace-pre border" v-if="Tab == 'Telat'">Denda</th>
                                 <th class="p-1.5 text-xs whitespace-nowrap border text-center">Status</th>
@@ -324,6 +329,10 @@ function statusBayar(value) {
                                     <span class="text-xs text-red-500">{{
                                         diffDate(mobil.waktusewa.tgl_kembali)
                                     }}</span>
+                                </td>
+                                <td
+                                    class="md:px-2 md:py-1 p-1.5 text-center text-xs md:text-[0.80rem] border whitespace-nowrap">
+                                    {{mobil.waktusewa.jam_sewa}} - {{ mobil.waktusewa.jam_kembali }}
                                 </td>
                                 <td
                                     class="md:px-2 md:py-1 p-1.5 text-center text-xs md:text-[0.80rem] border whitespace-nowrap">
@@ -390,7 +399,7 @@ function statusBayar(value) {
                         </tbody>
                     </table>
                 </div>
-                <PaginationVue :links="status.sewa.links" class="bg-white py-1"></PaginationVue>
+                <PaginationVue :links="status.sewa.links" :status="Tab" class="bg-white py-1"></PaginationVue>
             </div>
             <!-- Modal Status -->
             <Modal v-bind:show="ModalShow" @close="isClose()" :max-width="`md`">

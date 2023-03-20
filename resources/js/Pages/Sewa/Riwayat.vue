@@ -55,7 +55,7 @@ function destroy(id) {
 const search = ref('');
 const FormSearch = useForm();
 watch(search, (value) => {
-    FormSearch.get(route('Sewa.riwayat', { search: value }), {
+    FormSearch.get(route('Sewa.riwayat', { search: value, statusBayar: status.statusBayar,page: status.page }), {
         preserveState: true,
     })
 });
@@ -70,7 +70,7 @@ function TabClick(value) {
         replace: true,
     });
 }
-function statusBayar(value) {
+function TxtstatusBayar(value) {
     var hasil = null;
     switch (value) {
         case '1' || 1:
@@ -249,7 +249,7 @@ function statusBayar(value) {
                             <td class="md:px-4 md:py-3 px-2 py-2 text-xs border">
                                 <span @click="isOpen(mobil.id)"
                                     class="px-2 py-1 font-semibold cursor-pointer leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">
-                                    {{ statusBayar(mobil.status_bayar) }}
+                                    {{ TxtstatusBayar(mobil.status_bayar) }}
                                 </span>
                             </td>
                             <td class="md:px-4 md:py-3 p-1.5 border text-xs md:text-sm flex">
@@ -288,7 +288,7 @@ function statusBayar(value) {
                     </tbody>
                 </table>
             </div>
-            <PaginationVue :links="status.sewa.links" class="mt-3 text-black"></PaginationVue>
+            <PaginationVue :links="status.sewa.links" :status-bayar="statusBayar" :search="search" class="mt-3 text-black"></PaginationVue>
         </div>
     </AuthenticatedLayout>
 </template>

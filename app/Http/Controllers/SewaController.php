@@ -49,7 +49,7 @@ class SewaController extends Controller
                 ->filter(FacadesRequest::only('search'))
                 ->where('status', '!=', 'Selesai')
                 ->orderBy('id', 'desc')
-                ->paginate(20) ?? null,
+                ->paginate(10) ?? null,
             'can' => [
                 'create' => Auth::user()->can('sewa create'),
                 'edit' => Auth::user()->can('sewa edit'),

@@ -1,6 +1,6 @@
 <script setup>
-import { defineProps, ref, onMounted, defineEmits , watch} from 'vue';
-import { Head, Link, useForm,Inertia } from '@inertiajs/inertia-vue3';
+import { defineProps, ref, onMounted, defineEmits, watch } from 'vue';
+import { Head, Link, useForm, Inertia } from '@inertiajs/inertia-vue3';
 import InputLabelVue from '@/Components/InputLabel.vue';
 import TextInputVue from '@/Components/TextInput.vue';
 import Modal from '@/Components/Modal.vue'
@@ -9,19 +9,19 @@ import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 
 
 const props = defineProps({
-    mobil: {type:Object, default: ()=>({})},
+    mobil: { type: Object, default: () => ({}) },
     TabStatus: Object.toString(),
     can: {
         type: Object,
-        default: ()=>({})
+        default: () => ({})
     }
 })
 const form = useForm();
 function destroy(id) {
     if (confirm("Are you sure you want to Delete")) {
         form.delete(route('Mobil.destroy', id), {
-            onError: (error)=> {console.log(error)},
-            onSuccess: ()=>{
+            onError: (error) => { console.log(error) },
+            onSuccess: () => {
                 alert('Barhasil')
             }
         });
@@ -65,42 +65,42 @@ function submitStatus() {
 const search = ref('');
 const searchForm = useForm();
 
-watch(search, (value)=>{
+watch(search, (value) => {
     searchForm.get(route('Mobil.index', {
         search: value
-    }),{
+    }), {
         preserveState: true,
     })
 
-} )
+})
 function cariMobil(event) {
     return event;
 }
 const rupiah = (number) => {
-            return new Intl.NumberFormat("id-ID", {
-                style: "currency",
-                currency: "IDR"
-            }).format(number);
-        }
-function   Status(n) {
-            var msg = '';
-            switch (parseInt(n)) {
-                case 1 || '1':
-                    msg = 'Disewa'
-                    break;
-                case 2 || '2':
-                    msg = 'Siap'
-                    break;
-                case 3 || '3':
-                    msg = 'perbaikan'
-                    break;
+    return new Intl.NumberFormat("id-ID", {
+        style: "currency",
+        currency: "IDR"
+    }).format(number);
+}
+function Status(n) {
+    var msg = '';
+    switch (parseInt(n)) {
+        case 1 || '1':
+            msg = 'Disewa'
+            break;
+        case 2 || '2':
+            msg = 'Siap'
+            break;
+        case 3 || '3':
+            msg = 'perbaikan'
+            break;
 
-                default:
-                    msg = 'semua'
-                    break;
-            }
-            return msg;
-        }
+        default:
+            msg = 'semua'
+            break;
+    }
+    return msg;
+}
 </script>
 
 <template>
@@ -151,30 +151,27 @@ function   Status(n) {
         </Modal>
         <div class="bg-gray-200 w-full">
             <div v-if="$page.props.flash.success"
-            class=" flex flex-row justify-between p-4 mb-4 text-sm text-green-700 bg-green-100 rounded-lg dark:bg-green-200 dark:text-green-800"
-            role="alert">
-            <span class="font-medium">{{ $page.props.flash.success }}</span>
+                class=" flex flex-row justify-between p-4 mb-4 text-sm text-green-700 bg-green-100 rounded-lg dark:bg-green-200 dark:text-green-800"
+                role="alert">
+                <span class="font-medium">{{ $page.props.flash.success }}</span>
 
-        </div>
-        <div v-if="$page.props.flash.error"
-            class=" flex flex-row justify-between p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg dark:bg-red-200 dark:text-red-800"
-            role="alert">
-            <span class="font-medium">{{ $page.props.flash.error }}</span>
+            </div>
+            <div v-if="$page.props.flash.error"
+                class=" flex flex-row justify-between p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg dark:bg-red-200 dark:text-red-800"
+                role="alert">
+                <span class="font-medium">{{ $page.props.flash.error }}</span>
 
-        </div>
+            </div>
             <div
                 class="w-full rounded-lg bg-gray-200 flex flex-wrap justify-between flex-col-reverse md:flex-row overflow-auto">
                 <nav class="flex flex-row">
                     <button v-on:click="TabClick(0)" v-bind:class="TabStatus == '0' ? TabActive : TabNonActive">
                         Semua
-                    </button><button v-on:click="TabClick(1)"
-                        v-bind:class="TabStatus == '1' ? TabActive : TabNonActive">
+                    </button><button v-on:click="TabClick(1)" v-bind:class="TabStatus == '1' ? TabActive : TabNonActive">
                         Disewa
-                    </button><button v-on:click="TabClick(2)"
-                        v-bind:class="TabStatus == '2' ? TabActive : TabNonActive">
+                    </button><button v-on:click="TabClick(2)" v-bind:class="TabStatus == '2' ? TabActive : TabNonActive">
                         Tersedia
-                    </button><button v-on:click="TabClick(3)"
-                        v-bind:class="TabStatus == '3' ? TabActive : TabNonActive">
+                    </button><button v-on:click="TabClick(3)" v-bind:class="TabStatus == '3' ? TabActive : TabNonActive">
                         Perbaikan
                     </button>
                 </nav>
@@ -218,14 +215,15 @@ function   Status(n) {
                                 </th>
                                 <th class="md:px-4 md:py-3 px-2 py-1 border border-gray-200 whitespace-nowrap">Status
                                 </th>
-                                <th class="md:px-4 md:py-3 px-2 py-1 border border-gray-200 whitespace-nowrap" >Aksi
+                                <th class="md:px-4 md:py-3 px-2 py-1 border border-gray-200 whitespace-nowrap">Aksi
                                 </th>
                             </tr>
                         </thead>
                         <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
-                            <tr v-for="(mobils,index) in props.mobil.data" :key="mobils" :index="index" itemid="1" class="text-gray-700 dark:text-gray-400">
+                            <tr v-for="(mobils, index) in props.mobil.data" :key="mobils" :index="index" itemid="1"
+                                class="text-gray-700 dark:text-gray-400">
                                 <td class="md:px-4 md:py-3 px-2 py-1 border border-gray-200 whitespace-nowrap text-sm">
-                                    {{ (props.mobil.current_page - 1)* props.mobil.per_page + index+1}}
+                                    {{ (props.mobil.current_page - 1) * props.mobil.per_page + index + 1 }}
                                 </td>
                                 <td class="md:px-4 md:py-3 px-2 py-1 border border-gray-200 whitespace-nowrap text-sm">
                                     {{ mobils.unit }}
@@ -241,13 +239,13 @@ function   Status(n) {
                                         class="px-2 py-1 font-semibold cursor-pointer capitalize leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">
                                         {{ Status(mobils.status) }}
                                     </button>
-                                    <button type="button"  v-else
+                                    <button type="button" v-else
                                         class="px-2 py-1 font-semibold cursor-not-allowed capitalize leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">
                                         {{ Status(mobils.status) }}
                                     </button>
 
                                 </td>
-                                <td class="md:px-4 md:py-3 px-2 py-1 border border-gray-200 whitespace-nowrap text-sm" >
+                                <td class="md:px-4 md:py-3 px-2 py-1 border border-gray-200 whitespace-nowrap text-sm">
                                     <button class="bg-blue-700 text-white px-2 py-1 rounded-md ml-2 font-semibold">
                                         <Link :href="route('Mobil.show', [{ id: mobils.id }])"
                                             :data="{ data: mobils.unit + mobils.nopol }">
@@ -261,7 +259,7 @@ function   Status(n) {
                                         </svg>
                                         </Link>
                                     </button>
-                                    <button @click="destroy(mobils.id)" v-if="can.edit || can.delete "
+                                    <button @click="destroy(mobils.id)" v-if="can.edit || can.delete"
                                         class="bg-default-red text-white px-2 py-1 rounded-md ml-2 font-semibold">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                             stroke-width="1.5" stroke="currentColor" class="w-5 h-5 font-semibold">
@@ -270,7 +268,8 @@ function   Status(n) {
                                         </svg>
 
                                     </button>
-                                    <button class=" bg-green-600 text-white px-2 py-1 rounded-md ml-2 font-semibold" v-if="can.edit || can.delete ">
+                                    <button class=" bg-green-600 text-white px-2 py-1 rounded-md ml-2 font-semibold"
+                                        v-if="can.edit || can.delete">
                                         <Link :href="route('Mobil.edit', [{ id: mobils.id }])"
                                             :data="{ mobil: mobils.unit }">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -283,9 +282,11 @@ function   Status(n) {
                                     <button class=" bg-yellow-600 text-white px-2 py-1 rounded-md ml-2 font-semibold">
                                         <Link :href="route('Mobil.riwayat', [{ id: mobils.id }])"
                                             :data="{ mobil: mobils.unit }">
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
-                                              </svg>
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                            stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
+                                        </svg>
 
                                         </Link>
                                     </button>
