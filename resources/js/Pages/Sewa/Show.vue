@@ -160,7 +160,7 @@
                         Jumlah Bayar</td>
                     <td
                         class=" border border-gray-200 md:px-3 sm:py-2 p-1 text-default-dark text-sm sm:text-base capitalize whitespace-pre-wrap font-semibold">
-                         {{ reduceArray(sewa.harga,sewa.waktusewa.lama_sewa ) }} </td>
+                         {{ reduceArray(sewa.harga,sewa.waktusewa.lama_sewa ) }} WITA </td>
                 </tr>
                 <tr>
                     <td
