@@ -141,6 +141,14 @@
                 <tr>
                     <td
                         class=" border border-gray-200 md:px-3 sm:py-2 p-1 text-default-dark text-sm sm:text-base capitalize whitespace-pre-wrap">
+                        Jam Sewa/Jam Kembali </td>
+                    <td
+                        class=" border border-gray-200 md:px-3 sm:py-2 p-1 text-default-dark text-sm sm:text-base capitalize whitespace-pre-wrap font-semibold">
+                        {{ sewa.waktusewa.jam_sewa }}/{{ sewa.waktusewa.jam_kembali}} </td>
+                </tr>
+                <tr>
+                    <td
+                        class=" border border-gray-200 md:px-3 sm:py-2 p-1 text-default-dark text-sm sm:text-base capitalize whitespace-pre-wrap">
                         Jumlah Telat Per Jam </td>
                     <td
                         class=" border border-gray-200 md:px-3 sm:py-2 p-1 text-default-dark text-sm sm:text-base capitalize whitespace-pre-wrap font-semibold">
