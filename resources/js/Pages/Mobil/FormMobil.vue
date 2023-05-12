@@ -5,10 +5,10 @@ const form = useForm({
     unit: '',
     nopol: '',
     harga: '',
-    foto1: '',
-    foto2: '',
-    foto3: '',
-    foto4: '',
+    // foto1: '',
+    // foto2: '',
+    // foto3: '',
+    // foto4: '',
     spesifikasi: '',
     tahun: '',
 })
@@ -73,7 +73,7 @@ const Error = form.errors;
                             class="w-full rounded-md border border-[#e0e0e0] bg-white text-sm font-medium text-black outline-none focus:border-default-dark focus:shadow-md" />
                     </div>
 
-                    <div class="mb-4">
+                    <!-- <div class="mb-4">
                         <label class="block text-sm font-semibold text-black">
                             Upload Foto Depan
                         </label>
@@ -114,7 +114,7 @@ const Error = form.errors;
                     <progress v-if="form.progress" :value="form.progress.percentage"
                         class="bg-blue-600 h-2.5 rounded-full" max="100">
                         {{ form.progress.percentage }}%
-                    </progress>
+                    </progress> -->
                     <div class="flex justify-around gap-2">
                         <Link :href="route('Mobil.index')"
                             class="hover:shadow-form w-full rounded-md bg-default-red py-3 px-8 text-center text-base font-semibold text-white outline-none">
