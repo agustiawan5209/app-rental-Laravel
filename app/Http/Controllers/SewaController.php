@@ -56,6 +56,7 @@ class SewaController extends Controller
                 'delete' => Auth::user()->can('sewa delete'),
                 'update' => Auth::user()->can('sewa update'),
                 'updateselesai' => Auth::user()->can('sewa updateselesai'),
+                'SuperAdmin'=> Auth::user()->can('Admin')
             ],
             'Tab' => FacadesRequest::input('status'),
             'search' => FacadesRequest::input('search'),

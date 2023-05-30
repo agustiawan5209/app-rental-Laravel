@@ -368,7 +368,7 @@ function deffTime(){
                                         </svg>
                                     </button>
                                     </Link>
-                                    <Link :href="route('Sewa.edit', { id: mobil.id })">
+                                    <Link :href="route('Sewa.edit', { id: mobil.id })" v-if="can.SuperAdmin">
                                     <button class="bg-green-500 text-white px-2 py-1 rounded-md ml-2">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                             stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -379,7 +379,7 @@ function deffTime(){
                                     </button>
                                     </Link>
                                     <button class="bg-default-red text-white px-2 py-1 rounded-md ml-2"
-                                        @click="destroy(mobil.id)" v-if="can.delete">
+                                        @click="destroy(mobil.id)" v-if="can.SuperAdmin" >
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                             stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                             <path stroke-linecap="round" stroke-linejoin="round"

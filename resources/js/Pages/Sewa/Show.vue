@@ -202,6 +202,14 @@
                         class=" border border-gray-200 md:px-3 sm:py-2 p-1 text-default-dark text-sm sm:text-base capitalize whitespace-pre-wrap font-semibold">
                         {{ statusBayar(sewa.status_bayar) }} </td>
                 </tr>
+                <tr>
+                    <td
+                        class=" border border-gray-200 md:px-3 sm:py-2 p-1 text-default-dark text-sm sm:text-base capitalize whitespace-pre-wrap">
+                        Keterangan</td>
+                    <td
+                        class=" border border-gray-200 md:px-3 sm:py-2 p-1 text-default-dark text-sm sm:text-base capitalize whitespace-pre-wrap font-semibold">
+                        {{ sewa.list_pengiriman }} </td>
+                </tr>
 
             </table>
         </div>

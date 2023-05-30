@@ -791,8 +791,7 @@ function statusBayar(value) {
                     </div>
                     <div class="mb-5">
 
-                        <p class=" font-semibold text-gray-900  text-sm lowercase">Isi Kolom Input
-                            Dibawah Dengan Detail Pengiriman Mobil Apakah Diambil Ditempat Atau Dikirim Ke Penyewa</p>
+                        <p class=" font-semibold text-gray-900  text-sm lowercase">Keterangan</p>
                         <TextInput type="text" v-model="Form.list_pengiriman"
                             placeholder="Isikan Keterangan Pengambilan" required />
 
