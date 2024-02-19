@@ -2,7 +2,7 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head, Link } from '@inertiajs/inertia-vue3';
 import { defineProps, ref, watch } from 'vue';
-
+import BarChart from '@/Components/BarChart.vue'
 const data = defineProps({
     penyewa: Number,
     totalPendapatan: Number,
@@ -13,6 +13,7 @@ const data = defineProps({
         default: () => ({})
     },
     sewaTerbaru: Object,
+    dataPerBulan: Object,
     sewatelat: {
         type: Object,
         default: () => ({}),
@@ -129,50 +130,12 @@ let forDate = parseDateNow();
         <div class="grid grid-cols-1 lg:grid-cols-2 p-4 gap-4">
 
             <!-- Social Traffic -->
-            <!-- <div
-                class="relative flex flex-col min-w-0 mb-4 lg:mb-0 break-words bg-gray-50 dark:bg-gray-800 w-full shadow-lg rounded">
+            <div
+                class="relative flex flex-col min-w-0 mb-4 lg:mb-0 break-words bg-gray-50  w-full shadow-lg rounded">
                 <div class="rounded-t mb-0 px-0 border-0">
-                    <div class="flex flex-wrap items-center px-4 py-2">
-                        <div class="relative w-full max-w-full flex-grow flex-1">
-                            <h3 class="font-semibold text-base text-gray-900 dark:text-gray-50">Data Penyewaan Mobil
-                            </h3>
-                        </div>
-                        <div class="relative w-full max-w-full flex-grow flex-1 text-right">
-                            <Link :href="route('Mobil.index')"
-                                class="bg-default-dark dark:bg-gray-100 text-white active:bg-blue-600 dark:text-gray-800 dark:active:text-gray-700 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                                type="button">Lihat Semua</Link>
-                        </div>
-                    </div>
-                    <div class="block w-full overflow-x-auto">
-                        <table class="items-center w-full bg-transparent border-collapse">
-                            <thead>
-                                <tr>
-                                    <th
-                                        class="px-4 bg-gray-100 dark:bg-gray-600 text-gray-500 dark:text-gray-100 align-middle border border-solid border-gray-200 dark:border-gray-500 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-                                        Referral</th>
-                                    <th
-                                        class="px-4 bg-gray-100 dark:bg-gray-600 text-gray-500 dark:text-gray-100 align-middle border border-solid border-gray-200 dark:border-gray-500 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-                                        Visitors</th>
-                                    <th
-                                        class="px-4 bg-gray-100 dark:bg-gray-600 text-gray-500 dark:text-gray-100 align-middle border border-solid border-gray-200 dark:border-gray-500 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left min-w-140-px">
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody v-for="(mobil, index) in MapMobil" :key="mobil" :index="index">
-                                <tr v-for="item in mobil" :key="item" class="text-gray-700 dark:text-gray-100">
-                                    <th v-if="item.status == 1"
-                                        class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">
-                                        {{ item.unit }}
-                                    </th>
-                                    <td v-if="item.status == 1">
-                                        {{ item.status }}
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                   <BarChart :dataSewa="dataPerBulan" />
                 </div>
-            </div> -->
+            </div>
             <!-- ./Social Traffic -->
 
             <!-- Recent Activities -->

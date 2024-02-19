@@ -484,6 +484,7 @@ class LaporanController extends Controller
         $pdf->set_option("isPhpEnabled", true);
         $pdf = PDF::loadView('cetak-pdf', ['data' => $data]);
         Storage::put('public/' . $namaPDF, $pdf->download()->getOriginalContent());
+
         return response()->download($filePATH);
     }
     public function CetakEXCEL()

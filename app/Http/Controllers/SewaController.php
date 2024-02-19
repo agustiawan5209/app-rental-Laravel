@@ -343,8 +343,7 @@ class SewaController extends Controller
             // $nilai_denda = $total_denda * $diff;
 
             $sub_total = (intval($item->waktusewa->lama_sewa)  * $this->reduceArray($item->harga)) + $item->denda;
-            // dd($this->reduceArray($item->harga),(intval($item->waktusewa->lama_sewa)  * $this->reduceArray($item->harga)), $item->kode, $item->waktusewa->lama_sewa, $item->denda, $sub_total);
-            // dd($nilai_denda);
+
             $item->update(['denda' => '0', 'status' => "Telat", 'total' => '0', 'status_bayar' => '3']);
             WaktuSewa::where('sewa_id',  $item->id)->update(['telat' => $diff]);
         }

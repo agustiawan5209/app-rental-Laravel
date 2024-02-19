@@ -33,6 +33,25 @@ class UserController extends Controller
         $sewa_telat = Sewa::with(['waktusewa','pengguna','sopir'])->whereHas('waktusewa', function($query)use($tgl_bsok){
             $query->whereDate('tgl_kembali', $tgl_bsok);
         })->get();
+
+        $tahun = date('Y');
+        // Ambil data sewa untuk tahun 2023
+        $dataSewa = Sewa::whereYear('created_at', $tahun)->where('status','=','Selesai')->get();
+
+        // Inisialisasi array untuk menyimpan data per bulan
+        $dataPerBulan = [];
+
+        // Loop untuk setiap bulan dari Januari hingga Desember
+        for ($bulan = 1; $bulan <= 12; $bulan++) {
+            // Filter data sewa untuk bulan saat ini
+            $dataBulanIni = $dataSewa->filter(function ($sewa) use ($bulan) {
+                return $sewa->created_at->month == $bulan;
+            });
+
+            // Simpan data per bulan ke dalam array
+
+            $dataPerBulan[$bulan] = $dataBulanIni->sum('total');
+        }
         return Inertia::render('Dashboard',[
             'penyewa'=> $sewa->count(),
             'totalPendapatan'=> Sewa::where('status','=','Selesai')->sum('total'),
@@ -41,6 +60,8 @@ class UserController extends Controller
             'mobil'=> Mobil::paginate(10),
             'sewaTerbaru'=> Sewa::with(['pengguna','waktusewa'])->orderBy('id', 'desc')->where('status', '=', 'Sewa')->paginate(5),
             'sewatelat'=> $sewa_telat,
+            'dataPerBulan'=> $dataPerBulan,
+
         ]);
     }
     public function index()

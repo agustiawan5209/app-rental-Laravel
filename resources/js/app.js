@@ -14,7 +14,7 @@ import 'aos/dist/aos.css';
 const cleanApp = ()=>{
     document.getElementById('app').removeAttribute('data-page');
 };
-const appName = window.document.getElementsByTagName('title')[0]?.innerText || 'Jasaudagar';
+const appName = window.document.getElementsByTagName('title')[0]?.innerText || 'Rental';
 createInertiaApp({
     title: (title) => `${title} - ${appName}`,
     resolve: (name) => resolvePageComponent(`./Pages/${name}.vue`, import.meta.glob('./Pages/**/*.vue')),
