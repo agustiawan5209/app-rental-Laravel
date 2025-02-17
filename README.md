@@ -56,5 +56,4 @@ Sistem informasi rental kendaraan untuk pengelolaan data kendaraan, pelacakan ke
 Proyek ini menggunakan lisensi **MIT**.  
 
 ---
-
-Apakah ada bagian yang ingin Anda tambahkan atau ubah? 😊
+😊
